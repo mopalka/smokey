@@ -4,9 +4,9 @@
 
 class Drawer;
 class QPushButton;
-class QLabel;
-class QLineEdit;
 class CentralWidget;
+class QAction;
+class QMenu;
 
 class MainWindow : public QMainWindow {
   
@@ -19,6 +19,30 @@ public:
   
 private:
   CentralWidget* central; 
+
+  void createActions();
+  void createMenus();
+  void createToolBars();
+  void createStatusBar();
+  
+  QMenu *fileMenu;
+  QMenu *editMenu;
+  QMenu *helpMenu;
+  QToolBar *fileToolBar;
+  QToolBar *editToolBar;
+  QAction *newAct;
+  QAction *exitAct;
+  QAction *editAct;
+  QAction *aboutAct;
+
+public slots:
+  void noGame();
+
+private slots:
+  void newGame();
+  void edit();
+  void about();
+    
   
 };
 
@@ -34,15 +58,10 @@ private:
 
   Drawer* canva;
   
-  QPushButton *in_button;
-  QLabel *label_out;
-  QLineEdit *in_name_line;
-  QLineEdit *out_name_line;
-  QPushButton *go_button;
-  QPushButton *validate_button;
-  QPushButton *solve_button;
-  QPushButton *save_button;
-  
+  QPushButton *quit_button;
+
+signals:  
+  void gameEnded();
 
 };
 
