@@ -5,12 +5,10 @@
 class Car : public GObject {
 
 public:
-  Car();
-  ~Car();
-
-protected:
-  virtual void draw();
-
+  Car(){};
+  ~Car(){};
+  virtual void draw(QPainter* painter);
+  
 };
 
 #endif

@@ -1,15 +1,15 @@
 #ifndef  _GOBJECT_H_
 #define  _GOBJECT_H_
 
+class QPainter;
+
 class GObject {
 
 public:
-  GObject() = 0;
-  virtual ~GObject();
-
-protected:
-  virtual void draw();
-
+  virtual void draw(QPainter* painter) = 0;
+  
 };
+
+
 
 #endif

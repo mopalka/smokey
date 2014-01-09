@@ -9,6 +9,8 @@ INCLUDEPATH += . inc
 OBJECTS_DIR = obj
 MOC_DIR = moc
 QMAKE_CXXFLAGS += -std=c++0x
+RESOURCES += resources.qrc
+RCC_DIR = src
 
 # Input
 HEADERS += inc/ai.hpp \

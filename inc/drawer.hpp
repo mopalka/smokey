@@ -2,7 +2,7 @@
 #define  _DRAWER_H_
 #include <QWidget>
 
-class QPainter;
+class GObject;
 
 class Drawer : public QWidget {
   
@@ -11,9 +11,17 @@ class Drawer : public QWidget {
 public:
   Drawer(QWidget* parent);
   ~Drawer();
+  
+private:
+  QList<GObject*> list_to_draw;
 
 protected:
-  void paintEvent(QPainter* painter);
+  void paintEvent(QPaintEvent *event);
+  
+public slots:
+  void add_object(GObject* object){
+    list_to_draw.push_back(object);
+  };
   
 };
 

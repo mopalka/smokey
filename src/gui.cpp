@@ -1,6 +1,7 @@
 #include "gui.hpp"
 #include "drawer.hpp"
 #include <QtGui>
+#include "car.hpp"
 
 
 MainWindow::MainWindow()  {
@@ -87,9 +88,7 @@ void MainWindow::newGame(){
     central = new CentralWidget(this);
     setCentralWidget(central);
   } else {
-    
     statusBar()->showMessage(tr("the game is on..."));
-
   }
   
 }
@@ -113,12 +112,12 @@ CentralWidget::CentralWidget(QWidget* parent) : QWidget(parent) {
   this->setAttribute(Qt::WA_DeleteOnClose);
   canva = new Drawer(this);
   quit_button = new QPushButton(tr("Quit"));
-
+  
   connect(quit_button,SIGNAL(clicked()),
 	  this,SLOT(close()));
   connect(this,SIGNAL(gameEnded()),
 	  parent,SLOT(noGame()));
-
+  
 
   QVBoxLayout *left_layout = new QVBoxLayout;
   left_layout->addStretch();

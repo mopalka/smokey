@@ -7,6 +7,7 @@ class QPushButton;
 class CentralWidget;
 class QAction;
 class QMenu;
+class Car;
 
 class MainWindow : public QMainWindow {
   
@@ -42,8 +43,7 @@ private slots:
   void newGame();
   void edit();
   void about();
-    
-  
+
 };
 
 class CentralWidget : public QWidget {
