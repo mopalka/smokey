@@ -1,5 +1,9 @@
  <!DOCTYPE RCC><RCC version="1.0">
  <qresource>
      <file>pic/bear.png</file>
+     <file>pic/black-car.png</file>
+     <file>pic/orange-car.png</file>
+     <file>pic/blue-car.png</file>
+     <file>pic/green-car.png</file>
  </qresource>
  </RCC>
