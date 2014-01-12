@@ -8,28 +8,32 @@ const char*  Car::pngs[] = {":/pic/black-car.png",
 			    ":/pic/orange-car.png"};
 
 
-Car::Car() :  angle(0), position(0,0), velocity(0,0) {
+Car::Car() :  orientation(0), angle(0), position(0,0), velocity(0) {
 
+  color = static_cast<Color>(rand() % 4 );
  
 }
 
 
-Car::Car(double ang, QPoint pos, QPoint vel) : 	angle(ang), 
+Car::Car(double ori, QPointF pos,  Color col) : 	orientation(ori),
+						angle(0),
 						position(pos),
-						velocity(vel) {
-
-
-}
+						velocity(0),
+						color(col) {
+  
+  
+						}
 
  
 void Car::draw(QPainter* painter){
   
   painter->save();
+  painter->setRenderHint(QPainter::HighQualityAntialiasing);
   painter->translate(position+QPoint(14,30));
-  painter->rotate(angle);
+  painter->rotate(orientation);
 
   painter->translate(-QPoint(14,30));
-  painter->drawPixmap(0,0,QPixmap(Car::pngs[rand() % 4]));
+  painter->drawPixmap(0,0,QPixmap(getPng()));
   
   painter->restore();
 

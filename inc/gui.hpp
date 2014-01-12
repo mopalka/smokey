@@ -3,11 +3,12 @@
 #include <QMainWindow>
 
 class Drawer;
+class Engine;
 class QPushButton;
 class CentralWidget;
 class QAction;
 class QMenu;
-class Car;
+class QDoubleSpinBox;
 
 class MainWindow : public QMainWindow {
   
@@ -57,8 +58,16 @@ public:
 private:
 
   Drawer* canva;
-  
+  Engine * engine;
   QPushButton *quit_button;
+  QPushButton *start_engine_button;
+
+protected:
+  void keyPressEvent(QKeyEvent *event);
+  void keyReleaseEvent(QKeyEvent *event);
+
+private slots:
+  void start_engine();
 
 signals:  
   void gameEnded();
