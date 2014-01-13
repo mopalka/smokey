@@ -174,11 +174,11 @@ void CentralWidget::keyPressEvent(QKeyEvent *event){
   if(engine){
     switch (event->key()){
     case Qt::Key_Up:
-      engine->getPlayer()->setVelocity(-1);
+      engine->getPlayer()->setAcceleration(-1);
       break;
       
     case Qt::Key_Down:     
-      engine->getPlayer()->setVelocity(1);
+      engine->getPlayer()->setAcceleration(1);
       break;
       
     case Qt::Key_Right:
@@ -201,11 +201,11 @@ void CentralWidget::keyReleaseEvent(QKeyEvent *event){
     if(!event->isAutoRepeat()){    
       switch (event->key()){
       case Qt::Key_Up:
-	engine->getPlayer()->setVelocity(0);
+	engine->getPlayer()->setAcceleration(0);
 	break;
 	
       case Qt::Key_Down:
-	engine->getPlayer()->setVelocity(0);
+	engine->getPlayer()->setAcceleration(0);
 	break;
 	
       case Qt::Key_Right:

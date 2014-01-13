@@ -31,23 +31,35 @@ void Engine::update(){
 
 void Engine::intCar(Car* car){
   
+  double nVel = 0;
+  if(car->getVelocity()>0){
+    nVel = std::min(car->getVelocity()+car->getAcceleration()*dt/100 
+		    - 0.4*dt/100,+4.);
+  } else {
+    nVel = std::max(car->getVelocity()+car->getAcceleration()*dt/100
+		    + 0.4*dt/100,-4.);
+  }
+  
+  car->setVelocity(nVel);
+
   QPointF dPos(-sin(car->getOrientation()*3.14/180)*car->getVelocity(),
 	      cos(car->getOrientation()*3.14/180)*car->getVelocity());
 
-
   double nAng = 0;
   if(car->getAngVelocity()>0){
-    nAng = std::min(car->getAngle()+car->getAngVelocity()*dt/50,+45.);
+    nAng = std::min(car->getAngle()+car->getAngVelocity()*dt/60,+45.);
   } else {
-    nAng = std::max(car->getAngle()+car->getAngVelocity()*dt/50,-45.);
+    nAng = std::max(car->getAngle()+car->getAngVelocity()*dt/60,-45.);
   }
   
   car->setAngle(nAng);  
-  std::cout << "angle: " << car->getAngle() << std::endl;
+  std::cout << "vel: " << car->getVelocity() << " (" << car->getAngle() 
+	    << ")" 
+	    << std::endl;
   car->setOrientation(fmod(car->getOrientation()
-			   -tan((3.14/180)*car->getAngle())*car->getVelocity()*dt/5,360));
+			   -tan((3.14/180)*car->getAngle())
+			   *car->getVelocity()*dt/10,360));
 
   car->setPosition(car->getPosition()+dPos);
-  
 
 }

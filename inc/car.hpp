@@ -70,9 +70,18 @@ public:
   double getOrientation(){
     return orientation;
   };
+
+  void setAcceleration(double acc){
+    acceleration = acc;
+  };
+
+  double getAcceleration(){
+    return acceleration;
+  };
   
   
 private:
+  double acceleration;
   double orientation;
   double angle;
   double angVelocity;
