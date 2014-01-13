@@ -40,7 +40,10 @@ void Engine::intCar(Car* car){
 		    + 0.4*dt/100,-4.);
   }
   
+  if(fabs(nVel) <= 0.041) { nVel = 0; } 
+
   car->setVelocity(nVel);
+  std::cout << "vel: " << car->getVelocity() << std::endl;
 
   QPointF dPos(-sin(car->getOrientation()*3.14/180)*car->getVelocity(),
 	      cos(car->getOrientation()*3.14/180)*car->getVelocity());
@@ -53,9 +56,7 @@ void Engine::intCar(Car* car){
   }
   
   car->setAngle(nAng);  
-  std::cout << "vel: " << car->getVelocity() << " (" << car->getAngle() 
-	    << ")" 
-	    << std::endl;
+  
   car->setOrientation(fmod(car->getOrientation()
 			   -tan((3.14/180)*car->getAngle())
 			   *car->getVelocity()*dt/10,360));

@@ -8,21 +8,20 @@ const char*  Car::pngs[] = {":/pic/black-car.png",
 			    ":/pic/orange-car.png"};
 
 
-Car::Car() :  orientation(0), angle(0), position(0,0), velocity(0) {
-
+Car::Car() :  acceleration(0), orientation(0), angle(0), 
+	      angVelocity(0), position(0,0), velocity(0) {
+  
   color = static_cast<Color>(rand() % 4 );
  
 }
 
 
-Car::Car(double ori, QPointF pos,  Color col) : orientation(ori),
-						angle(0),
-						position(pos),
-						velocity(0),
-						color(col) {
+Car::Car(double ori, QPointF pos,  Color col) : 
+  acceleration(0),   orientation(ori),   angle(0.),
+  angVelocity(0),   position(pos),  velocity(0.),
+  color(col) {
   
-  
-						}
+  }
 
  
 void Car::draw(QPainter* painter){

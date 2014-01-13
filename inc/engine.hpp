@@ -16,6 +16,7 @@ public:
   Engine(QWidget* parent);
   ~Engine(){
     std::cout << "Engine is being destroyed!" << std::endl;
+    delete player;
   }
 
   PlayerCar* getPlayer(){
