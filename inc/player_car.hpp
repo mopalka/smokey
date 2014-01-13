@@ -5,11 +5,13 @@
 class PlayerCar : public Car {
 
 public:
+
   PlayerCar();
-  ~PlayerCar();
+  PlayerCar(double angle,QPointF pos, Color col = Car::Green);
+  ~PlayerCar(){};
 
 protected:
-  virtual void draw();
+  virtual void draw(QPainter* painter);
 
 };
 

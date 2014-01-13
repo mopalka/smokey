@@ -5,6 +5,7 @@
 
 #include <iostream>
 
+class PlayerCar;
 class Car;
 
 class Engine : public QWidget {
@@ -17,7 +18,7 @@ public:
     std::cout << "Engine is being destroyed!" << std::endl;
   }
 
-  Car* getPlayer(){
+  PlayerCar* getPlayer(){
     return player;
   };
 
@@ -28,7 +29,7 @@ private slots:
 private:
   QTimer timer;
   QList<Car*> ai_list;
-  Car* player;
+  PlayerCar* player;
   int dt;
 
 

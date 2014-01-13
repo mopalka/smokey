@@ -1,5 +1,5 @@
 #include "engine.hpp"
-#include "car.hpp"
+#include "player_car.hpp"
 #include <QPoint>
 #include <cstdlib>
 #include <QKeyEvent>     
@@ -14,7 +14,7 @@ Engine::Engine(QWidget* parent) : QWidget(parent) {
   connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
   timer.start();
 
-  player = new Car(0,QPoint(200,200));
+  player = new PlayerCar(0,QPoint(200,200));
   
 }
 
@@ -47,9 +47,9 @@ void Engine::intCar(Car* car){
 
   double nAng = 0;
   if(car->getAngVelocity()>0){
-    nAng = std::min(car->getAngle()+car->getAngVelocity()*dt/60,+45.);
+    nAng = std::min(car->getAngle()+car->getAngVelocity()*dt/30,+45.);
   } else {
-    nAng = std::max(car->getAngle()+car->getAngVelocity()*dt/60,-45.);
+    nAng = std::max(car->getAngle()+car->getAngVelocity()*dt/30,-45.);
   }
   
   car->setAngle(nAng);  

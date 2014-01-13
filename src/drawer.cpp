@@ -2,6 +2,7 @@
 #include <QPainter>
 #include "gobject.hpp"
 #include "car.hpp"
+#include "player_car.hpp"
 #include "engine.hpp"
 
 Drawer::Drawer(QWidget* parent) : QWidget(parent) {

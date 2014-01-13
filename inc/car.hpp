@@ -80,7 +80,7 @@ public:
   };
   
   
-private:
+protected:
   double acceleration;
   double orientation;
   double angle;

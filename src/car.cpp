@@ -15,7 +15,7 @@ Car::Car() :  orientation(0), angle(0), position(0,0), velocity(0) {
 }
 
 
-Car::Car(double ori, QPointF pos,  Color col) : 	orientation(ori),
+Car::Car(double ori, QPointF pos,  Color col) : orientation(ori),
 						angle(0),
 						position(pos),
 						velocity(0),
@@ -31,10 +31,42 @@ void Car::draw(QPainter* painter){
   painter->setRenderHint(QPainter::HighQualityAntialiasing);
   painter->translate(position+QPoint(14,30));
   painter->rotate(orientation);
+  painter->translate(-QPoint(14,30));
+
+  painter->translate(QPoint(0,10));
+  painter->translate(QPoint(1.5,5.5)); 
+  painter->rotate(angle*0.7);
+  painter->translate(-QPoint(1.5,5.5)); 
+
+  painter->drawPixmap(0,0,QPixmap(":/pic/tire.png"));
+
+  painter->restore();
+
+  // second wheel
+  painter->save();
+  painter->setRenderHint(QPainter::HighQualityAntialiasing);
+  painter->translate(position+QPoint(14,30));
+  painter->rotate(orientation);
+  painter->translate(-QPoint(14,30));
+
+  painter->translate(QPoint(25,10));
+  painter->translate(QPoint(1.5,5.5)); 
+  painter->rotate(angle*0.7);
+  painter->translate(-QPoint(1.5,5.5)); 
+
+  painter->drawPixmap(0,0,QPixmap(":/pic/tire.png"));
+  painter->restore();
+
+  
+  // The car
+  painter->save();
+  painter->setRenderHint(QPainter::HighQualityAntialiasing);
+  painter->translate(position+QPoint(14,30));
+  painter->rotate(orientation);
 
   painter->translate(-QPoint(14,30));
   painter->drawPixmap(0,0,QPixmap(getPng()));
-  
+ 
   painter->restore();
 
 }

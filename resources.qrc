@@ -5,5 +5,8 @@
      <file>pic/orange-car.png</file>
      <file>pic/blue-car.png</file>
      <file>pic/green-car.png</file>
+     <file>pic/tires.png</file>
+     <file>pic/tire.png</file>
+     <file>pic/wheel.png</file>
  </qresource>
  </RCC>
