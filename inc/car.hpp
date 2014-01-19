@@ -2,7 +2,7 @@
 #define  _CAR_H_
 #include "gobject.hpp"
 #include <QPointF>
-
+#include <QPolygon>
 
 class Car : public GObject {
 
@@ -79,8 +79,27 @@ public:
     return acceleration;
   };
   
+  int getGear(){
+    return gear;
+  }
+
+  void nextGear(){
+    if(gear < 4){
+      gear++;
+    }
+  }
+
+  void reduceGear(){
+    if(gear > 1){
+      gear--;
+    }
+  }
+
+  QPolygonF getPolygon();
+  
   
 protected:
+  int gear;
   double acceleration;
   double orientation;
   double angle;

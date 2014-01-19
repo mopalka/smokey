@@ -8,7 +8,7 @@ const char*  Car::pngs[] = {":/pic/black-car.png",
 			    ":/pic/orange-car.png"};
 
 
-Car::Car() :  acceleration(0), orientation(0), angle(0), 
+Car::Car() :  gear(1), acceleration(0), orientation(0), angle(0), 
 	      angVelocity(0), position(0,0), velocity(0) {
   
   color = static_cast<Color>(rand() % 4 );
@@ -17,7 +17,7 @@ Car::Car() :  acceleration(0), orientation(0), angle(0),
 
 
 Car::Car(double ori, QPointF pos,  Color col) : 
-  acceleration(0),   orientation(ori),   angle(0.),
+  gear(1), acceleration(0),   orientation(ori),   angle(0.),
   angVelocity(0),   position(pos),  velocity(0.),
   color(col) {
   
@@ -68,4 +68,23 @@ void Car::draw(QPainter* painter){
  
   painter->restore();
 
+  
+  painter->drawPolygon(getPolygon());
+
+
+}
+
+
+
+QPolygonF Car::getPolygon(){
+  
+  QPolygonF carPol;
+  QPointF pos = getPosition();
+  carPol << pos << pos+QPointF(+28,0) <<
+    pos+QPointF(+28,+60) << pos+QPointF(0,+60);
+  
+  QTransform trs = QTransform().translate(pos.x()+14,pos.y()+30).
+    rotate(getOrientation()).translate(-pos.x()-14,-pos.y()-30);
+  return trs.map(carPol);
+  
 }

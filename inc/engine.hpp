@@ -2,7 +2,8 @@
 #define  _ENGINE_H_
 #include <QTimer>
 #include <QWidget>
-
+#include "obstacle.hpp"
+#include <QVector>
 #include <iostream>
 
 class PlayerCar;
@@ -23,13 +24,20 @@ public:
     return player;
   };
 
+  QVector<Obstacle*> getObstacles(){
+    return obstacles;
+  };
+
+
 private slots:
   void update();
   void intCar(Car* c);
 
 private:
+  bool checkCollisions();
   QTimer timer;
   QList<Car*> ai_list;
+  QVector<Obstacle*> obstacles;
   PlayerCar* player;
   int dt;
 

@@ -14,16 +14,25 @@ Engine::Engine(QWidget* parent) : QWidget(parent) {
   connect(&timer, SIGNAL(timeout()), this, SLOT(update()));
   timer.start();
 
-  player = new PlayerCar(0,QPoint(200,200));
-  
+  player = new PlayerCar(0,QPoint(325,325));
+  obstacles.push_back(new Obstacle); 
+  (obstacles[0])->addVertex(100,100);
+  (obstacles[0])->addVertex(200,100);
+  (obstacles[0])->addVertex(200,200);
+  (obstacles[0])->addVertex(100,200);
+
+  obstacles.push_back(new Obstacle); 
+  (obstacles[0])->addVertex(400,400);
+  (obstacles[0])->addVertex(600,400);
+  (obstacles[0])->addVertex(500,300);
+  (obstacles[0])->addVertex(200,400);
+
 }
 
 void Engine::update(){
   
-  //std::cout << "Timer is tic-tic-ticin!" << std::endl;
-  
   intCar(player);
-
+  checkCollisions();
   this->parentWidget()->update();
 
 }
@@ -33,17 +42,18 @@ void Engine::intCar(Car* car){
   
   double nVel = 0;
   if(car->getVelocity()>0){
-    nVel = std::min(car->getVelocity()+car->getAcceleration()*dt/100 
-		    - 0.4*dt/100,+4.);
+    nVel = std::min(car->getVelocity()+car->getGear()
+		    *car->getAcceleration()*dt/100 
+		    - 0.4*dt/100,+0.5*car->getGear());
   } else {
-    nVel = std::max(car->getVelocity()+car->getAcceleration()*dt/100
-		    + 0.4*dt/100,-4.);
+    nVel = std::max(car->getVelocity()+car->getGear()
+		    *car->getAcceleration()*dt/100 
+		    + 0.4*dt/100,0. -car->getGear());
   }
   
   if(fabs(nVel) <= 0.041) { nVel = 0; } 
 
   car->setVelocity(nVel);
-  std::cout << "vel: " << car->getVelocity() << std::endl;
 
   QPointF dPos(-sin(car->getOrientation()*3.14/180)*car->getVelocity(),
 	      cos(car->getOrientation()*3.14/180)*car->getVelocity());
@@ -62,5 +72,20 @@ void Engine::intCar(Car* car){
 			   *car->getVelocity()*dt/10,360));
 
   car->setPosition(car->getPosition()+dPos);
+
+}
+
+bool Engine::checkCollisions(){
+
+  QPolygonF pl = player->getPolygon();
+  QPolygonF ob = obstacles[0]->getPolygon();
+
+  if(pl.intersected(ob).empty()){
+    std::cout << "Empty!" << std::endl;
+  } else {
+    std::cout << "Colision!!" << std::endl;
+  }
+  
+  
 
 }

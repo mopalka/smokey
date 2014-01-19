@@ -164,6 +164,9 @@ void CentralWidget::start_engine(){
   if(!engine){
     engine = new Engine(canva);
     canva->add_object(engine->getPlayer());
+    for(auto ob : engine->getObstacles()){
+      canva->add_object(ob);
+    }
   }
   
 }
@@ -189,6 +192,15 @@ void CentralWidget::keyPressEvent(QKeyEvent *event){
     case Qt::Key_Left:
       engine->getPlayer()->setAngVelocity(-1);
       break;
+
+    case Qt::Key_A:
+      engine->getPlayer()->reduceGear();
+      break;
+
+    case Qt::Key_S:
+      engine->getPlayer()->nextGear();
+      break;
+
 
     default:
       QWidget::keyPressEvent(event);
