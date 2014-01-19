@@ -22,10 +22,10 @@ Engine::Engine(QWidget* parent) : QWidget(parent) {
   (obstacles[0])->addVertex(100,200);
 
   obstacles.push_back(new Obstacle); 
-  (obstacles[0])->addVertex(400,400);
-  (obstacles[0])->addVertex(600,400);
-  (obstacles[0])->addVertex(500,300);
-  (obstacles[0])->addVertex(200,400);
+  (obstacles[1])->addVertex(400,400);
+  (obstacles[1])->addVertex(600,400);
+  (obstacles[1])->addVertex(500,300);
+  (obstacles[1])->addVertex(200,400);
 
 }
 
@@ -78,12 +78,17 @@ void Engine::intCar(Car* car){
 bool Engine::checkCollisions(){
 
   QPolygonF pl = player->getPolygon();
-  QPolygonF ob = obstacles[0]->getPolygon();
+  bool colision = false;
 
-  if(pl.intersected(ob).empty()){
-    std::cout << "Empty!" << std::endl;
-  } else {
+  for(auto& ob : obstacles){
+    colision =  !pl.intersected(ob->getPolygon()).empty() || colision;
+  }
+  
+  if(colision){
     std::cout << "Colision!!" << std::endl;
+    player->setVelocity(-player->getVelocity());
+  } else {
+    std::cout << "Empty!!" << std::endl;
   }
   
   
