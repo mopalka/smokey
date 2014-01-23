@@ -21,18 +21,45 @@ Engine::Engine(QWidget* parent) : QWidget(parent) {
   (obstacles[0])->addVertex(200,200);
   (obstacles[0])->addVertex(100,200);
 
+  obstacles.push_back(new Obstacle);
+  (obstacles[1])->addVertex(0,0);
+  (obstacles[1])->addVertex(0,2);
+  (obstacles[1])->addVertex(650,2);
+  (obstacles[1])->addVertex(650,0);
+
+  obstacles.push_back(new Obstacle);
+  (obstacles[2])->addVertex(2,2);
+  (obstacles[2])->addVertex(2,650);
+  (obstacles[2])->addVertex(0,650);
+  (obstacles[2])->addVertex(0,2);
+
+  obstacles.push_back(new Obstacle);
+  (obstacles[3])->addVertex(0,650);
+  (obstacles[3])->addVertex(650,650);
+  (obstacles[3])->addVertex(650,648);
+  (obstacles[3])->addVertex(0,648);
+
+  obstacles.push_back(new Obstacle);
+  (obstacles[4])->addVertex(650,650);
+  (obstacles[4])->addVertex(650,0);
+  (obstacles[4])->addVertex(648,0);
+  (obstacles[4])->addVertex(648,650);
+
   obstacles.push_back(new Obstacle); 
-  (obstacles[1])->addVertex(400,400);
-  (obstacles[1])->addVertex(600,400);
-  (obstacles[1])->addVertex(500,300);
-  (obstacles[1])->addVertex(200,400);
+  (obstacles[5])->addVertex(400,400);
+  (obstacles[5])->addVertex(500,400);
+  (obstacles[5])->addVertex(500,500);
+  (obstacles[5])->addVertex(400,500);
+
+
 
 }
 
 void Engine::update(){
-  
+
   intCar(player);
-  checkCollisions();
+  checkCollisions();  
+
   this->parentWidget()->update();
 
 }
@@ -86,8 +113,13 @@ bool Engine::checkCollisions(){
   
   if(colision){
     std::cout << "Colision!!" << std::endl;
-    player->setVelocity(-player->getVelocity());
+    if(!player->ifInColision()){
+      player->setColision();
+      player->setVelocity(-player->getVelocity());
+      player->setAcceleration(-player->getAcceleration());
+    }
   } else {
+    player->unsetColision();
     std::cout << "Empty!!" << std::endl;
   }
   

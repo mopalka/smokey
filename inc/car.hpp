@@ -96,9 +96,23 @@ public:
   }
 
   QPolygonF getPolygon();
+
+  void setColision(){
+    in_colision = true;
+  };
+
+  void unsetColision(){
+    in_colision = false;
+  };
+
+
+  bool ifInColision(){
+    return in_colision;
+  }
   
   
 protected:
+  bool in_colision;
   int gear;
   double acceleration;
   double orientation;

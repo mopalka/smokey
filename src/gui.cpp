@@ -178,27 +178,39 @@ void CentralWidget::keyPressEvent(QKeyEvent *event){
   if(engine){
     switch (event->key()){
     case Qt::Key_Up:
-      engine->getPlayer()->setAcceleration(-1);
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->setAcceleration(-1);
+      }
       break;
       
     case Qt::Key_Down:     
-      engine->getPlayer()->setAcceleration(1);
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->setAcceleration(1);
+      }
       break;
       
     case Qt::Key_Right:
-      engine->getPlayer()->setAngVelocity(1);
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->setAngVelocity(1);
+      }
       break;
-
+      
     case Qt::Key_Left:
-      engine->getPlayer()->setAngVelocity(-1);
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->setAngVelocity(-1);
+      }
       break;
 
     case Qt::Key_A:
-      engine->getPlayer()->reduceGear();
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->reduceGear();
+      }
       break;
 
     case Qt::Key_S:
-      engine->getPlayer()->nextGear();
+      if(!engine->getPlayer()->ifInColision()){
+	engine->getPlayer()->nextGear();
+      }
       break;
 
 

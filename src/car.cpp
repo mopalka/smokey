@@ -8,7 +8,8 @@ const char*  Car::pngs[] = {":/pic/black-car.png",
 			    ":/pic/orange-car.png"};
 
 
-Car::Car() :  gear(1), acceleration(0), orientation(0), angle(0), 
+Car::Car() :  in_colision(false),
+	      gear(1), acceleration(0), orientation(0), angle(0), 
 	      angVelocity(0), position(0,0), velocity(0) {
   
   color = static_cast<Color>(rand() % 4 );
@@ -17,6 +18,7 @@ Car::Car() :  gear(1), acceleration(0), orientation(0), angle(0),
 
 
 Car::Car(double ori, QPointF pos,  Color col) : 
+  in_colision(false),
   gear(1), acceleration(0),   orientation(ori),   angle(0.),
   angVelocity(0),   position(pos),  velocity(0.),
   color(col) {
